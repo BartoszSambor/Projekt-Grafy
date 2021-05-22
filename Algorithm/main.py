@@ -1,32 +1,31 @@
 class Graph:
     def __init__(self):
-        self.Verticles = []
-        self.VerticlesCount = 0
+        self.edges = []
+        self.verticesCount = 0
 
-    def addVerticle(self, start, end, length):
-        self.Verticles.append((start, end, length))
-        self.VerticlesCount = max(self.VerticlesCount, start + 1, end + 1)
+    def add_edge(self, start, end, length):
+        self.edges.append((start, end, length))
+        self.verticesCount = max(self.verticesCount, start + 1, end + 1)
 
     def __str__(self):
-        return self.Verticles.__str__()
+        return self.edges.__str__()
 
-    def BellmanFord(self, start):
-        distances = [float("inf")] * self.VerticlesCount
+    def bellman_ford(self, start):
+        distances = [float("inf")] * self.verticesCount
         distances[start] = 0
 
-        for i in range(self.VerticlesCount):
-            for s, e, d in self.Verticles:
+        for i in range(self.verticesCount):
+            for s, e, d in self.edges:
                 if distances[e] > distances[s] + d:
                     distances[e] = distances[s] + d
 
         print(distances)
 
 
-
 g = Graph()
-g.addVerticle(0,1, 100)
-g.addVerticle(0,2, 3)
-g.addVerticle(2,1, 4)
+g.add_edge(0, 1, 100)
+g.add_edge(0, 2, 3)
+g.add_edge(2, 1, 4)
 
 print(g)
-g.BellmanFord(0)
+g.bellman_ford(0)
