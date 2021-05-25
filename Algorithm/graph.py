@@ -2,21 +2,23 @@ import json
 
 
 class Graph:
-    def __init__(self, file_name=None):
+    def __init__(self):
         self.edges = []
         self.verticesCount = 0
-        if file_name is not None:
-            self.load_form_file(file_name)
 
     def load_form_file(self, file_name):
-        with open(file_name) as file:
-            data = json.load(file)
-            for counter, row in enumerate(data):
-                if not row:
-                    self.add_vertex_without_edge(counter)
-                    continue
-                for key, val in row.items():
-                    self.add_edge(int(counter), int(key), int(val))
+        try:
+            file = open(file_name)
+        except:
+            return False
+        data = json.load(file)
+        for counter, row in enumerate(data):
+            if not row:
+                self.add_vertex_without_edge(counter)
+                continue
+            for key, val in row.items():
+                self.add_edge(int(counter), int(key), int(val))
+        return True
 
     def add_edge(self, start, end, length):
         self.edges.append((start, end, length))
@@ -37,8 +39,9 @@ class Graph:
                 if distances[end] > distances[start] + weight:
                     distances[end] = distances[start] + weight
 
-        for start, end, weight in self.edges:
+        for start, end, weight in self.edges:  # Checking for negative value loops
             if distances[end] > distances[start] + weight:
                 return "Negative path"
 
+        # Returns dictionary where key is vertex index and value is the shortest distance from starting vertex
         return {index: dis for (index, dis) in enumerate(distances)}
