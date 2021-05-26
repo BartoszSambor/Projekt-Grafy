@@ -6,19 +6,25 @@ class Graph:
         self.edges = []
         self.verticesCount = 0
 
+    def __str__(self):
+        return self.edges.__str__()
+
     def load_form_file(self, file_name):
         try:
             file = open(file_name)
         except:
-            return False
-        data = json.load(file)
+            return "Invalid file path"
+        try:
+            data = json.load(file)
+        except:
+            return "Error while parsing JSON"
         for counter, row in enumerate(data):
             if not row:
                 self.add_vertex_without_edge(counter)
                 continue
             for key, val in row.items():
                 self.add_edge(int(counter), int(key), int(val))
-        return True
+        return None
 
     def add_edge(self, start, end, length):
         self.edges.append((start, end, length))
@@ -26,9 +32,6 @@ class Graph:
 
     def add_vertex_without_edge(self, index):
         self.verticesCount = max(self.verticesCount, index + 1)
-
-    def __str__(self):
-        return self.edges.__str__()
 
     def bellman_ford(self, start):
         distances = [float("inf")] * self.verticesCount

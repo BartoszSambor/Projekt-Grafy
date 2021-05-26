@@ -1,21 +1,26 @@
-from Algorithm import graph as gh
+import importlib
+
+graph_module = importlib.import_module("graph")
 
 while True:
-    # Exit input handling
     filename = str.strip(input("Insert path to graph file or type \"exit\" to exit: "))
     if str.lower(filename) == "exit":
         break
-    graph = gh.Graph()
-    if not graph.load_form_file(filename):  # Loading graph from file and handling invalid file path
-        print("Invalid path to file.")
+
+    graph = graph_module.Graph()
+    errorMessage = graph.load_form_file(filename)
+    if errorMessage is not None:
+        print(errorMessage)
         continue
 
-    # Index input handling
     start_index = input("Insert starting index: ")
     try:
         start_index = int(start_index)
     except:
         print("You did not enter a valid integer")
+        continue
+    if start_index > graph.verticesCount or start_index < 0:
+        print("Vertex with this index does not belong to graph")
         continue
 
     # Executing algorithm and printing results
