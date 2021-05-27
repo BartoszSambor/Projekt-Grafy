@@ -5,17 +5,15 @@
 
 ## Struktura projektu
 
-Folder **Algorithm**  
-zawiera implementację struktury grafu oraz algorytmu Bellmana-Forda w jezyku Python.
-W **Analysis**  
-znajduję się rozwiązanie części teoretycznej - zadania 1-8 oraz analiza algorytmu.
+Folder **Algorithm** zawiera implementację struktury grafu oraz algorytmu Bellmana-Forda w jezyku Python.
+W **Analysis** znajduję się rozwiązanie części teoretycznej - zadania 1-8 oraz analiza algorytmu.
 
 ## Uruchamianie programu
 **Wymagania**  
 Zainstalowany Python 3.1 lub nowszy.
 
 **Uruchamianie**  
-Uruchamiamy plik main.py" w folderze Algorithm, każde środowisko powinno sobie dać radę, albo można użyć wiersza poleceń:  
+Uruchamiamy plik "main.py" w folderze Algorithm, każde środowisko powinno sobie dać radę, albo można użyć wiersza poleceń:  
 >python3 main.py
 
 **Dane wejściowe**  
@@ -23,7 +21,8 @@ Podajemy względną ścieżkę do pliku w którym zapisana jest reprezentacja gr
 > exampleGraph1.json  
 > ../Data/exampleGraph2.json  
 > ../Data/exampleGraph3.txt  
-> Następnie enter i wpisujemy numer wierzchołka z którego algorytm ma rozpocząć działanie.
+
+Następnie enter i wpisujemy numer wierzchołka z którego algorytm ma rozpocząć działanie.
 
 **Dane wyjścione**  
 Program wypisuje zbiór, w którym klucze są indeksami wierzchołków, a wartości są minimalnymi odległościami z wierzchołka początkowego.
