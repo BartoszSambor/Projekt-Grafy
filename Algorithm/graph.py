@@ -44,7 +44,7 @@ class Graph:
 
         for start, end, weight in self.edges:  # Checking for negative value loops
             if distances[end] > distances[start] + weight:
-                return "Negative path"
+                return "Graph contains a cycle with negative weight"
 
         # Returns dictionary where key is vertex index and value is the shortest distance from starting vertex
         return {index: dis for (index, dis) in enumerate(distances)}
